@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-work-anniversaries",
+    "libraryId": "386dce66-c167-40fc-b09d-cc7b177678a2",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-work-anniversaries",
+    "solutionShortDescription": "zentalis-work-anniversaries description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

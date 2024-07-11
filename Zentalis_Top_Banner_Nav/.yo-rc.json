@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-top-banner-nav",
+    "libraryId": "bf13a352-8a35-4b2c-b70c-bf170f8f9f02",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-top-banner-nav",
+    "solutionShortDescription": "zentalis-top-banner-nav description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

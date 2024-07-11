@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "zentalis-birthday-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/zentalisBirthday/ZentalisBirthdayWebPart.js",
+          "manifest": "./src/webparts/zentalisBirthday/ZentalisBirthdayWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ZentalisBirthdayWebPartStrings": "lib/webparts/zentalisBirthday/loc/{locale}.js"
+  }
+}

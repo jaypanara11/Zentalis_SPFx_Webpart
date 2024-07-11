@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-work-anniversaries-client-side-solution",
+    "id": "386dce66-c167-40fc-b09d-cc7b177678a2",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-work-anniversaries description"
+      },
+      "longDescription": {
+        "default": "zentalis-work-anniversaries description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-work-anniversaries Feature",
+        "description": "The feature that activates elements of the zentalis-work-anniversaries solution.",
+        "id": "e32cfebf-6dbf-4bef-b6a4-9d5eacc2043c",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-work-anniversaries.sppkg"
+  }
+}

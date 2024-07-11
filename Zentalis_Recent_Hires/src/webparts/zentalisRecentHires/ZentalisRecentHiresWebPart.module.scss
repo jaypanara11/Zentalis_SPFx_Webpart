@@ -1,0 +1,106 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.recentHireContainer{
+  margin: 0px;
+}
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --skyblue: #3FA8F4;
+  --darkblue: #0A074A;
+  --lightblue: #6ac9f2;
+  --grey: #8482a4;
+  --lightpurple:#545180;
+  --softgrey: #f3f3f6;
+  --darkpink: #b21f59;
+  --orange: #f37623;
+}
+
+.recent_Hiring {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  width: 100%;
+  background-position: 52%;
+  width: 314px;
+  height: 330px;
+  padding: 35px 25px;
+}
+
+.recent_Hiring {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.474), rgba(0, 0, 0, 0.474)),url(https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/hiring.png);
+}
+.recent_Hiring_Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.recent_Hiring_Title h3{
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+.recent_Hiring_Celebrations_Btn {
+  float: right;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.recent_Hiring_Celebrations_Btn a img {
+    height:17px;
+    width:12px;
+}
+.recent_Hiring_Celebrations_Btn a{
+  text-decoration: none;
+  color: #6ac9f2;
+  height: 16px;
+  width: 9.42px;
+}
+.recent_Hiring_Cardslink a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+ .recent_Hiring h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    margin: 0px;
+    overflow: auto;
+    scrollbar-width: none;
+    height: 100px;
+}
+.recent_Hiring p {
+    /* margin-bottom: 25px; */
+    font-size: 16px;
+    font-weight: 400;
+    /* margin-top: 15px; */
+    color: white;
+}
+.recent_Hiring_Cardslink {
+  display: flex;
+  align-items: center;
+}
+
+
+.recent_Hiring_Cardslink img{
+  height:16px;
+   margin-top:5px;
+   margin-left:15px;
+}
+
+.recent_Hiring_Cardslink a:hover , .anniversaries_CardsLink a:hover, .birthday_Cards_Link a:hover{
+  text-decoration: underline;
+ text-decoration-color: var(--white);
+}
+
+.anniversaries_Celebrations_Btn a img , .recent_Hiring_Celebrations_Btn a img , .birthday_Celebrations_btn a img{
+ opacity: 0.5;
+}
+
+.anniversaries_Celebrations_Btn a img:hover , .recent_Hiring_Celebrations_Btn a img:hover , .birthday_Celebrations_btn a img:hover{
+ opacity: 1;
+}

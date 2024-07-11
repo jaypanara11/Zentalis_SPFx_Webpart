@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "zentalis-work-anniversaries-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/zentalisWorkAnniversaries/ZentalisWorkAnniversariesWebPart.js",
+          "manifest": "./src/webparts/zentalisWorkAnniversaries/ZentalisWorkAnniversariesWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ZentalisWorkAnniversariesWebPartStrings": "lib/webparts/zentalisWorkAnniversaries/loc/{locale}.js"
+  }
+}

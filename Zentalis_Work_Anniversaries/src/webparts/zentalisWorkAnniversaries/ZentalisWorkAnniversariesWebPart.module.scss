@@ -1,0 +1,112 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --skyblue: #3fa8f4;
+  --darkblue: #0a074a;
+  --lightblue: #6ac9f2;
+  --grey: #8482a4;
+  --lightpurple: #545180;
+  --softgrey: #f3f3f6;
+  --darkpink: #b21f59;
+  --orange: #f37623;
+}
+.anniversaries_Container {
+  background-image: linear-gradient(0deg,rgba(0, 0, 0, 0.474),rgba(0, 0, 0, 0.474)),url(https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/anniversery.png);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-size: cover;
+  background-position: 86%;
+  width: 329px;
+  height: 331px;
+  padding: 35px 10px 35px 25px;
+}
+.anniversaries_Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.anniversaries_Title h3
+ {
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+}
+.anniversaries_Celebrations_Btn {
+  float: right;
+  font-size: 25px;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+.anniversaries_Celebrations_Btn a {
+  text-decoration: none;
+  color: var(--lightblue);
+  height: 16px;
+  width: 9.42px;
+}
+.anniversaries_Celebrations_Btn a img{
+    height: 17px;
+    width: 12px;
+}
+.anniversaries_CardsLink a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: -11px;
+}
+.anniversaries_Container h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin:0px;
+  overflow: auto;
+  scrollbar-width: none;
+  height: 100px;
+}
+.anniversaries_Year {
+  color: var(--lightblue);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  visibility: none;
+}
+.anniversaries_CardsLink {
+  display: flex;
+  align-items: center;
+}
+.anniversaries_Text{
+  margin-bottom: 42px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top:0px;
+  color: white;
+}
+.anniversaries_CardsLink img{
+    height: 16px;
+    margin-top: -9px;
+    margin-left: 15px;
+}
+.no_Anniversaries_Quarter{
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+}
+
+.recent_Hiring_Cardslink a:hover , .anniversaries_CardsLink a:hover, .birthday_Cards_Link a:hover{
+  text-decoration: underline;
+ text-decoration-color: var(--white);
+}
+
+.anniversaries_Celebrations_Btn a img , .recent_Hiring_Celebrations_Btn a img , .birthday_Celebrations_btn a img{
+ opacity: 0.5;
+}
+
+.anniversaries_Celebrations_Btn a img:hover , .recent_Hiring_Celebrations_Btn a img:hover , .birthday_Celebrations_btn a img:hover{
+ opacity: 1;
+}

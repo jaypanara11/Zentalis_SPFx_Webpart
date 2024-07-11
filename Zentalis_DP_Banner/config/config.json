@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "zentalis-dep-banner-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/zentalisDepBanner/ZentalisDepBannerWebPart.js",
+          "manifest": "./src/webparts/zentalisDepBanner/ZentalisDepBannerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ZentalisDepBannerWebPartStrings": "lib/webparts/zentalisDepBanner/loc/{locale}.js"
+  }
+}

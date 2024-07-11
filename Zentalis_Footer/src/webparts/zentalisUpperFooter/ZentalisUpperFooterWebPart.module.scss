@@ -1,0 +1,214 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+//@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --skyblue: #3fa8f4;
+  --darkblue: #0a074a;
+  --lightblue: #6ac9f2;
+  --grey: #8482a4;
+  --lightpurple: #545180;
+  --softgrey: #f3f3f6;
+  --darkpink: #b21f59;
+  --orange: #f37623;
+}
+.upperFooterContainer{
+  background-color: #0a074a;
+  margin-left: -134px;
+  width: 123%;
+}
+.uppercontainer {
+  margin: 0 9.7% 0 9%;
+}
+.footer_container {
+  background-color: #0a074a;
+}
+.footer {
+  color: #ffffff;
+  padding-top: 145px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0a074a;
+}
+.footer_two_middle {
+  text-align: center;
+}
+.title_one {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.title_two {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.title_three {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+#footer_two a {
+  color: #6ac9f2;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+.div1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.div1_up {
+  height: 200px;
+  width: 30%;
+}
+.div1_up_upper {
+  height: 100px;
+  display: flex;
+}
+.div1_up_upper div {
+  width: 50%;
+}
+.div1_up_lower {
+  height: 100px;
+  display: flex;
+}
+.div1_up_lower div {
+  width: 50%;
+}
+.div1_low {
+  height: 200px;
+  width: 30%;
+}
+.div1_low_upper {
+  height: 100px;
+  display: flex;
+}
+.div1_low_upper div {
+  width: 50%;
+}
+.div1_low_lower {
+  height: 100px;
+  display: flex;
+  justify-content: end;
+}
+.div1_low_lower div {
+  width: 50%;
+}
+.div2 {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: -60px auto;
+}
+.div3 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.div3_up {
+  height: 200px;
+  width: 30%;
+}
+.div3_up_upper {
+  height: 100px;
+  display: flex;
+}
+.div3_up_upper div {
+  width: 50%;
+}
+.div3_up_lower {
+  height: 100px;
+  display: flex;
+}
+.div3_up_lower div {
+  width: 50%;
+}
+.div3_low {
+  height: 200px;
+  width: 30%;
+}
+.div3_low_upper div {
+  width: 50%;
+}
+.div3_low_upper {
+  height: 100px;
+  display: flex;
+}
+.div3_low_lower {
+  height: 100px;
+  display: flex;
+}
+.div3_low_lower div {
+  width: 50%;
+}
+.F1 {
+  background-color: var();
+}
+.F2 {
+  background-image: url('https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/image%20(10).png');
+  background-size: cover;
+}
+.F3 {
+  background-color: #3fa8f4;
+}
+.F4 {
+  background-color: #6ac9f2;
+}
+.F5 .F6{
+  margin: 0px;
+} 
+.F7 {
+  margin: 0 auto;
+}
+.F8 .F9{
+  margin: 0px;
+} 
+.F10 {
+  background-color: #ffffff;
+}
+.F11 {
+  background-color: #3fa8f4;
+}
+.F12 {
+  background-image: url('https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/image%20(9).png');
+  background-size: cover;
+  background-position: center;
+}
+.F13 {
+  margin: 0px;
+}
+  /* ---------BaseLine Footer---------- */
+.footer_link_Bottom a{
+  text-decoration: none;
+  color: #3fa8f4;
+}
+.footeraddress {
+  margin-top: 145px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  border-top: 1px solid #ffffff;
+}
+.footertexts {
+  display: flex;
+  flex-direction: column;
+}
+.footerimg {
+  width: 50%;
+}
+.footerimg img {
+  width: 30%;
+}
+.footertexts p {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}

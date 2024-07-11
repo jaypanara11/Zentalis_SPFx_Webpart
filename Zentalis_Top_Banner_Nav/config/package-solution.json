@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-top-banner-nav-client-side-solution",
+    "id": "bf13a352-8a35-4b2c-b70c-bf170f8f9f02",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-top-banner-nav description"
+      },
+      "longDescription": {
+        "default": "zentalis-top-banner-nav description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-top-banner-nav Feature",
+        "description": "The feature that activates elements of the zentalis-top-banner-nav solution.",
+        "id": "a825a351-65fe-402a-9d3f-bbc3e335dcdd",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-top-banner-nav.sppkg"
+  }
+}

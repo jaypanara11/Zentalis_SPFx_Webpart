@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-recent-hires",
+    "libraryId": "9c10fd89-a934-4e48-8bf2-6305713dfdbf",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-recent-hires",
+    "solutionShortDescription": "zentalis-recent-hires description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

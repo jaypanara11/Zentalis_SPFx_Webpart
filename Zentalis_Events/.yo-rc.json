@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-events",
+    "libraryId": "cdc3adb1-1e6a-4ddf-817b-b824ecbfd979",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-events",
+    "solutionShortDescription": "zentalis-events description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

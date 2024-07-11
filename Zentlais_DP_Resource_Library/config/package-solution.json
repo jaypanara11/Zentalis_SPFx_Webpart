@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentlais-dp-resource-library-client-side-solution",
+    "id": "5cb0569e-8ddf-4a89-ab57-91b974decd1e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentlais-dp-resource-library description"
+      },
+      "longDescription": {
+        "default": "zentlais-dp-resource-library description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentlais-dp-resource-library Feature",
+        "description": "The feature that activates elements of the zentlais-dp-resource-library solution.",
+        "id": "f8b0b619-757a-4b68-8e9c-e7f62699eca1",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentlais-dp-resource-library.sppkg"
+  }
+}

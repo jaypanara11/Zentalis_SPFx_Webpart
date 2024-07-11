@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-events-client-side-solution",
+    "id": "cdc3adb1-1e6a-4ddf-817b-b824ecbfd979",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-events description"
+      },
+      "longDescription": {
+        "default": "zentalis-events description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-events Feature",
+        "description": "The feature that activates elements of the zentalis-events solution.",
+        "id": "7b6e8e5e-5ea5-414f-80e2-35415a5505a7",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-events.sppkg"
+  }
+}

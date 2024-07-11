@@ -1,0 +1,99 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+
+.birthday_Container {
+  width: 313px;
+  height: 330px;
+  padding: 35px 25px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ background-size: cover;
+ background-position: center;
+}
+
+.birthday_Container {
+  background-image: linear-gradient(0deg,rgba(0, 0, 0, 0.474),rgba(0, 0, 0, 0.474)),url(https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/birthday-celebration.png);
+}
+.birthdays_Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.birthdays_Title h3 {
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+.birthday_Celebrations_btn {
+  float: right;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.birthday_Celebrations_btn a {
+  text-decoration: none;
+  color: lightblue;
+  height: 16px;
+  width: 9.42px;
+}
+.birthday_Celebrations_btn a img{
+    height:17px;
+    width: 12px;
+}
+.birthday_Cards_Link a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+.birthday_Container h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: white;
+  margin:0px;
+  overflow: auto;   
+  scrollbar-width: none;
+  height: 50px;
+  margin-bottom:10px;
+
+}
+
+.birthday_Cards_Link img{
+    height:16px;
+    margin-top:5px;
+    margin-left:15px;
+}
+.birthday_Container p {
+    font-size: 20px;
+    color: var(--lightblue);
+}
+.birthday_Year {
+  color: lightblue;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  visibility: none;
+}
+.birthday_Cards_Link {
+  display: flex;
+  align-items: center;
+}
+.birthday_Cards_Link {
+  height: 27px;
+  margin-top: 5px;
+}
+
+.recent_Hiring_Cardslink a:hover , .anniversaries_CardsLink a:hover, .birthday_Cards_Link a:hover{
+  text-decoration: underline;
+ text-decoration-color: var(--white);
+}
+
+.anniversaries_Celebrations_Btn a img , .recent_Hiring_Celebrations_Btn a img , .birthday_Celebrations_btn a img{
+ opacity: 0.5;
+}
+
+.anniversaries_Celebrations_Btn a img:hover , .recent_Hiring_Celebrations_Btn a img:hover , .birthday_Celebrations_btn a img:hover{
+ opacity: 1;
+}

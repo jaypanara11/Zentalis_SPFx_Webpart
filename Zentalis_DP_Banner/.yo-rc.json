@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-dep-banner",
+    "libraryId": "12cb1317-141f-4e0a-b846-81bc075d028e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-dep-banner",
+    "solutionShortDescription": "zentalis-dep-banner description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

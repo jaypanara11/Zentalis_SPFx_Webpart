@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-dep-banner-client-side-solution",
+    "id": "12cb1317-141f-4e0a-b846-81bc075d028e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-dep-banner description"
+      },
+      "longDescription": {
+        "default": "zentalis-dep-banner description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-dep-banner Feature",
+        "description": "The feature that activates elements of the zentalis-dep-banner solution.",
+        "id": "b6b7fdb1-dbc6-4e03-a962-72271b04c2f6",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-dep-banner.sppkg"
+  }
+}

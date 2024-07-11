@@ -1,0 +1,102 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.Zentalis_Meet_Team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.department_Team_Title{
+  margin: 0px;
+}
+.department_Team_Header{
+  margin: 0px;
+}
+.department_Container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.department_User_Item {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  overflow: hidden;
+}
+
+.department_User_Image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.department_User_Info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  //align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.department_User_Item:hover .department_User_Info {
+  opacity: 1;
+}
+
+.department_User_Item:hover .department_User_Image {
+  opacity: 0.3;
+}
+
+.department_UserName {
+  margin: 21px 0px 4px 21px;
+  color: #64CDF6;
+  //font-family: "Red Hat Display";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.department_UserJobTitle {
+  margin: 0px 0px 0px 21px;
+  color: #ffffff;
+  //font-family: "Red Hat Display";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.department_Row{
+  display: flex; 
+  justify-content: space-around; 
+  //margin-bottom: 10px;
+  gap: 10px;
+}
+.department_LearnAboutUser{
+  margin: 0px 0px 21px 21px;
+  color: #ffffff;
+  //font-family: "Red Hat Display";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  justify-content: center;
+  align-items: center;
+}
+.department_Nav_Icon{
+  height: 12px;
+  width: 12px;
+  margin-left: 8px;
+}
+.department_Ancher_link{
+  text-decoration: none;
+}
+

@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentlais-dp-resource-library",
+    "libraryId": "5cb0569e-8ddf-4a89-ab57-91b974decd1e",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentlais-dp-resource-library",
+    "solutionShortDescription": "zentlais-dp-resource-library description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

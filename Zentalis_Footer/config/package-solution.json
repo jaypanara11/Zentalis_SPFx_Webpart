@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-upper-footer-client-side-solution",
+    "id": "c430d145-f1d4-47b6-a141-23aa8bc8834c",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-upper-footer description"
+      },
+      "longDescription": {
+        "default": "zentalis-upper-footer description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-upper-footer Feature",
+        "description": "The feature that activates elements of the zentalis-upper-footer solution.",
+        "id": "07dc40a4-45d3-401f-9e20-44207bbbf2cd",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-upper-footer.sppkg"
+  }
+}

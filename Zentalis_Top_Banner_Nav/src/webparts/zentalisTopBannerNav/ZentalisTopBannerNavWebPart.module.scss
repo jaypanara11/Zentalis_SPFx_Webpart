@@ -1,0 +1,178 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --skyblue: #3FA8F4;
+  --darkblue: #0A074A;
+  --lightblue: #6ac9f2;
+  --grey: #8482a4;
+  --lightpurple:#545180;
+  --softgrey: #f3f3f6;
+  --darkpink: #b21f59;
+  --orange: #f37623;
+}
+
+* {
+  font-family: "Red Hat Display";
+}
+
+.topBannerImage{
+  background-image: url('https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/image%20(1).jpg');
+  background-position: center;
+  height: 90vh;
+  background-size: cover;
+  background-color: darkblue;
+  margin-left: -134px;
+  width: 123%;
+}
+.topBannerContainer {
+  text-align: center;
+}
+.topContainer {
+  margin: 0;
+  display: flex;
+  gap: 2%;
+}
+.topBannerText {
+  color: var(--darkblue);
+  font-size: 48px;
+  font-weight: 700;
+}
+.topBannerUserName {
+  color: var(--skyblue);
+}
+.topBannerDate {
+  color: gray;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Links_container {
+  width: 32%;
+  position: relative;
+  top: -70px;
+  z-index: 10;
+}
+.Middle_header {
+  display: flex;
+  justify-content: space-between;
+  max-height: 133.33px;
+  padding: 25px 10px 25px 25px;
+}
+.Middle_header a {
+  text-decoration: none;
+}
+.Hr {
+  margin: 0;
+}
+.Hr p {
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 15px;
+  margin-top: 0px;
+}
+.Hr h2 {
+  color: var(--darkblue);
+  margin: 0px;
+  font-size: 36px;
+  font-weight: 700;
+}
+.header_nav_links {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 10px 0px;
+}
+.logo_link {
+  display: flex;
+  align-items: center;
+}
+.logo_link img {
+  width: 20px;
+  margin-right: 10px;
+}
+.logo_link a {
+  color: var(--darkblue);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.logo_link img {
+  width: 30px;
+}
+.logo_link .logo-img {
+  width: 23px;
+}
+.topBannerLinkIcon {
+  height: 20px;
+  width: 20px;
+}
+
+img.BottomLinkIcon {
+
+    height: 15px;
+    width: 15px;
+    margin-left: 5px;
+}
+
+/* END of Zentalis Top Container */
+
+/*Zentalis Bottom Container */
+
+
+.bottomContainer {
+  display: flex;
+  justify-content: center;
+  color: var(--darkblue);
+  font-size: 18px;
+  font-weight: 700;
+  margin: auto;
+  margin-top: -50px;
+  gap: 15px;
+}
+.Links_container_Bottom{
+  padding:0px 25px;
+}
+.bottomContainer h2 {
+  font-size: 18px;
+}
+.bottomContainer .Links_container .Middle_header {
+  padding: 0px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottomSectionTitle {
+  margin: 0px;
+}
+.topSectionTitle:hover {
+  text-decoration:underline;
+}
+.flexContainer {
+  display: flex;
+  align-items: center;
+}
+.flexContainer img.BottomLinkIcon{
+  opacity: 0; 
+}
+.flexContainer:hover img.BottomLinkIcon{
+  opacity: 1; 
+}
+.flexContainer img {
+  margin:0px 4px;
+}
+.Middle_header_Bottom a {
+  text-decoration: none;
+}
+.topContainer.flexContainer h2 {
+  margin: 0;
+}
+.bottomContainer.flexContainer h2 {
+  margin: 0;
+}
+.bottomSectionTitleContainer {
+  display: flex;
+  align-items: center;
+}

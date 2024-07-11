@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "zentalis-recent-hires-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/zentalisRecentHires/ZentalisRecentHiresWebPart.js",
+          "manifest": "./src/webparts/zentalisRecentHires/ZentalisRecentHiresWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ZentalisRecentHiresWebPartStrings": "lib/webparts/zentalisRecentHires/loc/{locale}.js"
+  }
+}
