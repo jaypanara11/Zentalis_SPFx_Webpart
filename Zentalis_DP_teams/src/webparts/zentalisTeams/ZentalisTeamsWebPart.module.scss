@@ -6,10 +6,24 @@
   gap: 10px;
 }
 .department_Team_Title{
-  margin: 0px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom:25px;
+    color: var(--darkblue);
+    font-weight:700;
 }
 .department_Team_Header{
-  margin: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--darkblue);
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:50px;
+
 }
 .department_Container {
   display: flex;

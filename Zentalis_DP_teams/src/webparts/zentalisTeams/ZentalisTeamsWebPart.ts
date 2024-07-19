@@ -10,11 +10,16 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'ZentalisTeamsWebPartStrings';
 import { MSGraphClientV3 } from '@microsoft/sp-http';
 import { ResponseType } from '@microsoft/microsoft-graph-client';
-//import styles from './ZentalisTeamsWebPart.module.scss';
+import { SPComponentLoader } from '@microsoft/sp-loader'; 
 
 export interface IZentalisTeamsWebPartProps {
   description: string;
-  departmentFilter: string; 
+  departmentFilter: string;
+  Title: string;
+  Header: string;
+  Icon: string;
+  Profile: string;
+  CSSUrl: string;
 }
 
 export interface ISPList {
@@ -28,10 +33,16 @@ export interface ISPList {
 
 export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentalisTeamsWebPartProps> {
 
-  private _selectedDepartment: string = ''; 
-  private _departmentOptions: IPropertyPaneDropdownOption[] = [{ key: '', text: 'All' }]; 
+  private _selectedDepartment: string = '';
+  private _departmentOptions: IPropertyPaneDropdownOption[] = [{ key: '', text: 'All' }];
+  private _displayedUserCount: number = this._getInitialUserCount();
 
   public render(): void {
+    const cssUrl = this.properties.CSSUrl || '';     
+    if (cssUrl) {
+      SPComponentLoader.loadCss(cssUrl);
+    }
+
     this.context.msGraphClientFactory
       .getClient('3')
       .then((client: MSGraphClientV3): void => {
@@ -39,12 +50,19 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
           this._fetchUsers(client).then(usersWithPhotos => {
             this.domElement.innerHTML = `
               <div>
-                <div class="department_Team_Title">Department Teams</div>
-                <div class="department_Team_Header">Meet the Teams</div>
-                <div id="BindspListItems" class="Zentalis_Meet_Team">
-                </div>
+                <div class="department_Team_Title">${this.properties.Header}</div>
+                <div class="department_Team_Header">${this.properties.Title}</div>
+                <div id="BindspListItems" class="Zentalis_Meet_Team"></div>
+                <button id="viewMoreButton" class="DP_Team_View_More" style="display: none;">View More</button>
               </div>`;
             this._renderUsersByDepartment(usersWithPhotos);
+
+            const viewMoreButton = this.domElement.querySelector('#viewMoreButton') as HTMLElement;
+            if (viewMoreButton) {
+              viewMoreButton.addEventListener('click', () => this._toggleView(usersWithPhotos));
+            }
+
+            window.addEventListener('resize', () => this._onResize(usersWithPhotos));
           });
         });
       });
@@ -64,8 +82,8 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
   private async _fetchUsers(client: MSGraphClientV3): Promise<ISPList[]> {
     try {
       const response = await client.api('https://graph.microsoft.com/v1.0/users')
-      .select('id,displayName,jobTitle,department,employeeHireDate')
-      .get();
+        .select('id,displayName,jobTitle,department,employeeHireDate')
+        .get();
       const users = response.value.map((user: any) => ({
         ...user,
         employeeHireDate: user.employeeHireDate
@@ -80,28 +98,35 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
   private async _fetchUserPhotos(client: MSGraphClientV3, users: ISPList[]): Promise<ISPList[]> {
     const usersWithPhotos = await Promise.all(users.map(async (user: ISPList) => {
       try {
-        const photoResponse = await client.api(`https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`).responseType(ResponseType.BLOB).get();
-        const photoUrl = URL.createObjectURL(photoResponse);
-        return { ...user, photo: photoUrl };
+        if (user.id) {
+          const photoResponse = await client.api(`https://graph.microsoft.com/v1.0/users/${user.id}/photo/$value`).responseType(ResponseType.BLOB).get();
+          const photoUrl = URL.createObjectURL(photoResponse);
+          return { ...user, photo: photoUrl };
+        } else {
+          return null;
+        }
       } catch (error) {
         console.error(`Failed to get photo for user ${user.displayName}:`, error);
-        return { ...user, photo: undefined };
+        return null;
       }
     }));
-    return usersWithPhotos;
+
+    return usersWithPhotos.filter(user => user !== null) as ISPList[];
   }
 
   private _renderUsersByDepartment(users: ISPList[]): void {
     const sortedUsers = users.sort((a, b) => new Date(a.employeeHireDate).getTime() - new Date(b.employeeHireDate).getTime());
 
     const filteredUsers = this._selectedDepartment ? sortedUsers.filter(user => user.department === this._selectedDepartment) : sortedUsers;
-    const usersToDisplay = filteredUsers.slice(0, 8); 
+    const usersToDisplay = filteredUsers.slice(0, this._displayedUserCount);
+
     let html: string = `<div class="department_Container">`;
 
-    for (let i = 0; i < usersToDisplay.length; i += 4) {
+    const usersPerRow = window.innerWidth <= 431 ? 3 : 4;
+    for (let i = 0; i < usersToDisplay.length; i += usersPerRow) {
       html += `<div class="department_Row">`;
 
-      for (let j = i; j < i + 4 && j < usersToDisplay.length; j++) {
+      for (let j = i; j < i + usersPerRow && j < usersToDisplay.length; j++) {
         const user = usersToDisplay[j];
         const firstName = user.displayName.split(' ')[0];
         html += `
@@ -113,7 +138,7 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
                 <p class="department_UserJobTitle">${user.jobTitle}</p>
               </div>
               <a class="department_Ancher_link" href="#">
-                <div class="department_LearnAboutUser">Learn more about ${firstName}<img class="department_Nav_Icon" src="https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/image.png" alt="Icon" /></div>
+                <div class="department_LearnAboutUser">Learn more about ${firstName}<img class="department_Nav_Icon" src="${this.properties.Icon}" alt="Icon" /></div>
               </a>
             </div>
           </div>`;
@@ -123,13 +148,52 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
     }
 
     html += `</div>`;
-    const listContainer: Element = this.domElement.querySelector('#BindspListItems')!;
+    const listContainer: HTMLElement = this.domElement.querySelector('#BindspListItems') as HTMLElement;
     listContainer.innerHTML = html;
+
+    const viewMoreButton = this.domElement.querySelector('#viewMoreButton') as HTMLElement;
+    if (viewMoreButton) {
+      if (filteredUsers.length > this._displayedUserCount) {
+        viewMoreButton.style.display = 'block';
+        viewMoreButton.textContent = this._displayedUserCount > this._getInitialUserCount() ? 'View Less' : 'View More';
+      } else {
+        viewMoreButton.style.display = 'none';
+      }
+    }
+  }
+
+  private _toggleView(users: ISPList[]): void {
+    const initialUserCount = this._getInitialUserCount();
+    if (window.innerWidth <= 431) {
+      if (this._displayedUserCount === initialUserCount) {
+        this._displayedUserCount = initialUserCount + 3;
+      } else {
+        this._displayedUserCount = initialUserCount;
+      }
+    } else {
+      if (this._displayedUserCount === initialUserCount) {
+        this._displayedUserCount = initialUserCount * 2;
+      } else {
+        this._displayedUserCount = initialUserCount;
+      }
+    }
+    this._renderUsersByDepartment(users);
+  }
+
+  private _getInitialUserCount(): number {
+    return window.innerWidth <= 431 ? 3 : 8;
+  }
+
+  private _onResize(users: ISPList[]): void {
+    const initialUserCount = this._getInitialUserCount();
+    if (this._displayedUserCount > initialUserCount) {
+      this._displayedUserCount = initialUserCount;
+    }
+    this._renderUsersByDepartment(users);
   }
 
   protected onInit(): Promise<void> {
     return this._getEnvironmentMessage().then(message => {
-
       const savedDepartment = localStorage.getItem('selectedDepartment');
       if (savedDepartment) {
         this._selectedDepartment = savedDepartment;
@@ -172,17 +236,18 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
     const { semanticColors } = currentTheme;
 
     if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
+      const rootElement = this.domElement as HTMLElement;
+      rootElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
+      rootElement.style.setProperty('--link', semanticColors.link || null);
+      rootElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
     }
   }
 
   protected onPropertyPaneFieldChanged(propertyPath: string, oldValue: any, newValue: any): void {
     if (propertyPath === 'departmentFilter') {
       this._selectedDepartment = newValue;
-      localStorage.setItem('selectedDepartment', newValue); 
-      this.render(); 
+      localStorage.setItem('selectedDepartment', newValue);
+      this.render();
     }
   }
 
@@ -195,19 +260,28 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: ''
           },
           groups: [
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                }),
                 PropertyPaneDropdown('departmentFilter', {
                   label: 'Filter by Department',
                   options: this._departmentOptions,
                 }),
+                PropertyPaneTextField('Header', {
+                  label: 'Team Header'
+                }),
+                PropertyPaneTextField('Title', {
+                  label: 'Team Title'
+                }),
+                PropertyPaneTextField('Icon', {
+                  label: 'Navigation Icon'
+                }),
+                PropertyPaneTextField('CSSUrl', {
+                  label: 'CSS Url'
+                })
               ]
             }
           ]

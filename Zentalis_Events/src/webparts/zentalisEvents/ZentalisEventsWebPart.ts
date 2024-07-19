@@ -4,7 +4,7 @@ import {
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-
+import * as moment from 'moment-timezone';
 //import styles from './ZentalisEventsWebPart.module.scss';
 import * as strings from 'ZentalisEventsWebPartStrings';
 
@@ -19,6 +19,7 @@ export interface IZentalisEventsWebPartProps {
   ViewAllEvents: string;
   ListName: string;
   RightArrow: string;
+ 
 }
 
 import {
@@ -65,20 +66,20 @@ export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZental
   }
 
   private _formatEventDate(eventDate: string): string {
-    const date = new Date(eventDate);
+    const date = moment(eventDate).tz(moment.tz.guess());
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-    const dayOfWeek = daysOfWeek[date.getDay()];
-    const month = monthsOfYear[date.getMonth()];
-    const dayOfMonth = date.getDate();
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
+  
+    const dayOfWeek = daysOfWeek[date.day()];
+    const month = monthsOfYear[date.month()];
+    const dayOfMonth = date.date();
+    let hours = date.hours();
+    const minutes = date.minutes();
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12; // Handle midnight
     const minutesStr = minutes < 10 ? '0' + minutes : minutes.toString();
-    const timezone = date.toLocaleTimeString('en-us', {timeZoneName: 'short'}).split(' ')[2]
+    const timezone = date.format('z'); // Get the timezone abbreviation
   
     return `${dayOfWeek}, ${month} ${dayOfMonth}, ${hours}:${minutesStr} ${ampm} (${timezone})`;
   }
@@ -166,6 +167,7 @@ export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZental
   }
 
   public render(): void {
+
     this.domElement.innerHTML = `<div class="calendarTopContainer" id="BindspListItems"></div>`;
     this._renderListAsync();
   }

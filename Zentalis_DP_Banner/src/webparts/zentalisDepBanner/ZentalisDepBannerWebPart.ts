@@ -8,9 +8,9 @@ import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
 import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { SPComponentLoader } from '@microsoft/sp-loader'; 
+import * as moment from 'moment-timezone';
 
-const cssUrl = `https://zenopharma.sharepoint.com/sites/ZenSPDev/SiteAssets/ZentalisDepartment.css`;
-SPComponentLoader.loadCss(cssUrl);
+
 
 import * as strings from 'ZentalisDepBannerWebPartStrings';
 
@@ -18,6 +18,7 @@ export interface IZentalisDepBannerWebPartProps {
   description: string;
   ListName: string;
   WelcomeText: string;
+  CSSUrl: string;
 }
 
 export interface ISPLists {
@@ -135,46 +136,26 @@ export default class ZentalisDepBannerWebPart extends BaseClientSideWebPart<IZen
   }
   
   private _updateTiming(): void {
-    const today = new Date();
-  
-    // Adjusting for IST (UTC+5:30)
-    const ISTOffset = 5.5 * 60; // in minutes
-    const ISTTime = new Date(today.getTime() + ISTOffset * 60 * 1000); // Convert offset to milliseconds and add to current time
-  
-    const formattedDate = ISTTime.toDateString();
-  
-    const options: Intl.DateTimeFormatOptions = {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Kolkata' // Set the time zone to IST
-    };
-  
-    let formattedTime = ISTTime.toLocaleTimeString('en-US', options);
-    formattedTime = formattedTime.replace('AM', 'am').replace('PM', 'pm');
-  
-    const cleanedString = `${formattedDate} • ${formattedTime} IST`; // Append "IST" to the formatted time
+    const today = moment().tz(moment.tz.guess());
+    const formattedDate = today.format('dddd, MMM DD YYYY · hh:mm a z');
+
     const displayDateElement = this.domElement.querySelector('#display-date');
-  
+
     if (displayDateElement) {
-      displayDateElement.innerHTML = cleanedString;
+      displayDateElement.innerHTML = formattedDate;
     }
   }
 
   public render(): void {
-    const css = `
+    const cssUrl = this.properties.CSSUrl || ''; 
     
-    `;
-  
-    // Add the CSS to the head of the document
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.appendChild(document.createTextNode(css));
-    document.head.appendChild(style);
-  
+    if (cssUrl) {
+      SPComponentLoader.loadCss(cssUrl);
+    }
+
     this.domElement.innerHTML = `<div id="BindspListItems"></div>`;
-    this._updateTiming(); // Call your updated time function here
-    setInterval(() => this._updateTiming(), 60000); // Update time every minute
+    this._updateTiming();
+    setInterval(() => this._updateTiming(), 60000);
     this._renderListAsync();
   }
   
@@ -200,6 +181,9 @@ export default class ZentalisDepBannerWebPart extends BaseClientSideWebPart<IZen
                 }),
                 PropertyPaneTextField('WelcomeText', {
                   label: 'Welcome Text'
+                }),
+                PropertyPaneTextField('CSSUrl', {
+                  label: 'CSS Url'
                 })
               ]
             }

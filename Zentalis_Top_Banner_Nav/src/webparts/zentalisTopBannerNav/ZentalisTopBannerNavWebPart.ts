@@ -10,16 +10,13 @@ import { escape } from '@microsoft/sp-lodash-subset';
 import { SPComponentLoader } from '@microsoft/sp-loader'; 
 import * as moment from 'moment-timezone';
 
-// Define the CSS URL for loading
-const cssUrl = `https://zenopharma.sharepoint.com/sites/ZenSPDev/SiteAssets/Zentalis.css`;
-SPComponentLoader.loadCss(cssUrl);
-
 import * as strings from 'ZentalisTopBannerNavWebPartStrings';
 
 export interface IZentalisTopBannerNavWebPartProps {
   description: string;
   ListName: string;
   WelcomeText: string;
+  CSSUrl: string;
 }
 
 export interface ISPLists {
@@ -54,11 +51,12 @@ export default class ZentalisTopBannerNavWebPart extends BaseClientSideWebPart<I
 
   private _getListData(): Promise<ISPLists> {
     const requestUrl = `${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('${this.properties.ListName}')/Items?$select=Title,SubTitle,TilesBackgroundColor,TitleColor,SubTitleColor,Links,Icon,SectionPosition,IsActive,OrderID,BottomLinkIcon&$filter=IsActive eq 1`;
+    
     return this.context.spHttpClient.get(requestUrl, SPHttpClient.configurations.v1)
       .then((response: SPHttpClientResponse) => response.json())
       .catch(error => {
         console.error("Failed to fetch list data: ", error);
-        return { value: [] }; // return empty list on error
+        return { value: [] as ISPList[] }; // Ensure a default value if undefined
       });
   }
 
@@ -79,33 +77,32 @@ export default class ZentalisTopBannerNavWebPart extends BaseClientSideWebPart<I
     let bottomHtml: string = '';
 
     items.forEach((item: ISPList) => {
-      const iconUrl = item.Icon && item.Icon.Url ? escape(item.Icon.Url) : ''; // Check if item.Icon and item.Icon.Url are defined
+      const iconUrl = item.Icon?.Url ? escape(item.Icon.Url) : ''; // Optional chaining
 
       const linksContainerClass = item.SectionPosition === 'Bottom' ? 'Links_container_Bottom' : 'Links_container';
       const middleHeaderClass = item.SectionPosition === 'Bottom' ? 'Middle_header_Bottom' : 'Middle_header';
 
-      // Check if BottomLinkIcon is defined before accessing its Url
       const bottomLinkIconUrl = item.BottomLinkIcon?.Url || '';
       const bottomLinkIconHtml = bottomLinkIconUrl ? `<img class="BottomLinkIcon" src="${escape(bottomLinkIconUrl)}" alt="Icon" />` : '';
 
       const itemHtml = `
-      <div class="${linksContainerClass}" style="background-color:${escape(item.TilesBackgroundColor)};">
-        <div class="${middleHeaderClass}">
-          <div class="Hr">
-            <a href="${escape(item.Links.Url)}" class="hover-container">
-              <p style="color:${escape(item.SubTitleColor)};">${escape(item.SubTitle)}</p>
-              <div class="flexContainer">
-                ${iconUrl ? `<img class="topBannerLinkIcon" src="${iconUrl}" alt="Icon" />` : ''}
-                <h2 class="${item.SectionPosition === 'Bottom' ? 'bottomSectionTitle' : 'topSectionTitle'}" style="color:${escape(item.TitleColor)};">
-                  ${escape(item.Title)}
-                </h2>
-                ${bottomLinkIconHtml}
-              </div>
-            </a>
+        <div class="${linksContainerClass}" style="background-color:${escape(item.TilesBackgroundColor)};">
+          <div class="${middleHeaderClass}">
+            <div class="Hr">
+              <a href="${escape(item.Links.Url)}" class="hover-container">
+                <p style="color:${escape(item.SubTitleColor)};">${escape(item.SubTitle)}</p>
+                <div class="flexContainer">
+                  ${iconUrl ? `<img class="topBannerLinkIcon" src="${iconUrl}" alt="Icon" />` : ''}
+                  <h2 class="${item.SectionPosition === 'Bottom' ? 'bottomSectionTitle' : 'topSectionTitle'}" style="color:${escape(item.TitleColor)};">
+                    ${escape(item.Title)}
+                  </h2>
+                  ${bottomLinkIconHtml}
+                </div>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    `;
+      `;
 
       if (item.SectionPosition === 'Top') {
         topHtml += itemHtml;
@@ -145,15 +142,10 @@ export default class ZentalisTopBannerNavWebPart extends BaseClientSideWebPart<I
   }
 
   public render(): void {
-    const css = `
-      /* Add your custom CSS here */
-    `;
-
-    // Add the CSS to the head of the document
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    style.appendChild(document.createTextNode(css));
-    document.head.appendChild(style);
+    const cssUrl = this.properties.CSSUrl || '';     
+    if (cssUrl) {
+      SPComponentLoader.loadCss(cssUrl);
+    }
 
     this.domElement.innerHTML = `<div id="BindspListItems"></div>`;
     this._updateTiming();
@@ -181,6 +173,9 @@ export default class ZentalisTopBannerNavWebPart extends BaseClientSideWebPart<I
                 }),
                 PropertyPaneTextField('WelcomeText', {
                   label: 'Welcome Text'
+                }),
+                PropertyPaneTextField('CSSUrl', {
+                  label: 'CSS Url'
                 })
               ]
             }
