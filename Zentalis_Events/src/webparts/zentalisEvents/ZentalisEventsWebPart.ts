@@ -19,7 +19,6 @@ export interface IZentalisEventsWebPartProps {
   ViewAllEvents: string;
   ListName: string;
   RightArrow: string;
- 
 }
 
 import {
@@ -46,6 +45,8 @@ export interface ISPList {
 }
 
 export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZentalisEventsWebPartProps> {
+
+  private _allItems: ISPList[] = [];
 
   private _getListData(): Promise<ISPLists> {
     const requestUrl = `${this.context.pageContext.web.absoluteUrl}/_api/web/lists/GetByTitle('${this.properties.ListName}')/items?$select=EventTitle,EventDate,Event_x0020_Category,EventLink`;
@@ -91,24 +92,29 @@ export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZental
         .then((response) => {
           if (response && response.value) {
             console.log('Response data:', response.value);
-            this._renderList(response.value);
+            this._allItems = response.value;
+            this._renderList(false); // Initially render only 6 items
           } else {
             console.warn('No data found in response.');
-            this._renderList([]);
+            this._renderList(false); // Render empty list
           }
         })
         .catch((error) => {
           console.error('Error in _renderListAsync:', error);
-          this._renderList([]);
+          this._renderList(false); // Render empty list
         });
     }
   }
 
-  private _renderList(items: ISPList[]): void {
+  private _renderList(showAll: boolean): void {
+    let items = this._allItems;
     items.sort((a, b) => new Date(a.EventDate).getTime() - new Date(b.EventDate).getTime());
     const today = new Date();
     items = items.filter(item => new Date(item.EventDate) >= today);
-    items = items.slice(0, 6);
+
+    if (!showAll) {
+      items = items.slice(0, 6); // Show only 6 items if showAll is false
+    }
 
     let html: string = `
       <div class="calendarContainer">
@@ -164,11 +170,25 @@ export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZental
 
     const listContainer: Element = this.domElement.querySelector('#BindspListItems')!;
     listContainer.innerHTML = html;
+
+    this._setUpToggleView(showAll);
+  }
+
+  private _setUpToggleView(showAll: boolean): void {
+    const viewAllButton: HTMLButtonElement = this.domElement.querySelector('#viewAllButton')!;
+    if (showAll) {
+      viewAllButton.style.display = 'none'; // Hide the button
+    } else {
+      viewAllButton.addEventListener('click', () => {
+        this._renderList(true);
+      });
+    }
   }
 
   public render(): void {
-
-    this.domElement.innerHTML = `<div class="calendarTopContainer" id="BindspListItems"></div>`;
+    this.domElement.innerHTML = `<div class="calendarTopContainer" id="BindspListItems"></div>
+    <div class="Calendar_btn"><button id="viewAllButton" class="DP_Event_View_All">View All</button></div>
+    `;
     this._renderListAsync();
   }
 
@@ -200,7 +220,7 @@ export default class ZentalisEventsWebPart extends BaseClientSideWebPart<IZental
                   label: 'View All Events'
                 }),
                 PropertyPaneTextField('RightArrow', {
-                  label: 'Right Arrow'
+                  label: 'Navigation Arrow'
                 })
               ]
             }

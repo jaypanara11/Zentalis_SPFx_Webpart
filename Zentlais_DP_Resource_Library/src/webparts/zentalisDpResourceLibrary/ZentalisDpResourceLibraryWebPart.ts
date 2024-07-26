@@ -121,7 +121,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
           <div id="Apps" class="tab_content" style="display: none;"></div>
         </div>
         <div class="Bottom_ViewAll">
-          <a id="viewAll" class="view_all_link" href="#">View All</a>
+          <button id="BottomviewAll" class="Bottom_view_all_link">View All</button>
         </div>
 
         <div id="DocumentDetails"></div>
@@ -165,6 +165,15 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
       this._openUrl(viewAllUrl);
     });
 
+    const bottomViewAllButton = this.domElement.querySelector('#BottomviewAll')!;
+    if (bottomViewAllButton) {
+      bottomViewAllButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        this._handleBottomViewAllClick();
+      });
+    }
+  
+
     const sortSpan = this.domElement.querySelector('#sortName')!;
     sortSpan.addEventListener('click', () => {
       const activeSection = this.domElement.querySelector('.tab_content[style*="display: block;"]')!;
@@ -178,6 +187,11 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
     if (dropdownButton) {
       dropdownButton.addEventListener('click', () => this.toggleDropdown());
     }
+  }
+  private _handleBottomViewAllClick(): void {
+    const activeSection = this.domElement.querySelector('.tab_content[style*="display: block;"]')!;
+    const targetId = activeSection.id;
+    this._renderAllItems(targetId as keyof ISectionSortOrder);
   }
   
 
@@ -225,8 +239,6 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
     viewAllLink.setAttribute('href', sectionUrls[sectionId]);
     viewAllLink.textContent = `View All `;
   }
-  
-  
 
   private _sortItems(items: ISPList[], sectionId: keyof ISectionSortOrder): ISPList[] {
     return items.sort((a, b) => {
@@ -266,8 +278,33 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
     }
   }
 
+  private _renderAllItems(sectionId: keyof ISectionSortOrder): void {
+    switch (sectionId) {
+      case 'Documents':
+        this._renderFullListAsync();
+        break;
+      case 'Videos':
+        this._renderFullVideoListAsync();
+        break;
+      case 'Slides':
+        this._renderFullImageListAsync();
+        break;
+      case 'TeamCalls':
+        this._renderFullTeamCallsListAsync();
+        break;
+      case 'Policies':
+        this._renderFullPoliciesListAsync();
+        break;
+      case 'Apps':
+        this._renderFullAppsListAsync();
+        break;
+      default:
+        break;
+    }
+  }
+
   private _renderList(items: ISPList[]): void {
-    items = this._sortItems(items, 'Documents').slice(0, 12);
+    items = this._sortItems(items, 'Documents')
     let html: string = '<div class="zd_Main_Document"><div class="zd_Document_Left">';
     items.forEach((item: ISPList) => {
       html += `
@@ -284,7 +321,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderVideoList(items: ISPList[]): void {
-    items = this._sortItems(items, 'Videos').slice(0, 8);
+    items = this._sortItems(items, 'Videos')
     let html: string = '<div class="zd_Main_Slides"><div class="zd_slide_upper">';
     items.forEach((item: ISPList) => {
       html += `
@@ -306,7 +343,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderImageList(items: ISPList[]): void {
-    items = this._sortItems(items, 'Slides').slice(0, 8);
+    items = this._sortItems(items, 'Slides')
     let html: string = '<div class="zd_Main_Slides"><div class="zd_slide_upper">';
     items.forEach((item: ISPList) => {
       html += `
@@ -326,7 +363,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderTeamCallsList(items: ISPList[]): void {
-    items = this._sortItems(items, 'TeamCalls').slice(0, 12);
+    items = this._sortItems(items, 'TeamCalls')
     let html: string = '<div class="zd_Main_Document"><div class="zd_Document_Left">';
     items.forEach((item: ISPList) => {
       html += `
@@ -343,7 +380,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderPoliciesList(items: ISPList[]): void {
-    items = this._sortItems(items, 'Policies').slice(0, 12);
+    items = this._sortItems(items, 'Policies')
     let html: string = '<div class="zd_Main_Document"><div class="zd_Document_Left">';
     items.forEach((item: ISPList) => {
       html += `
@@ -360,7 +397,7 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderAppsList(items: ISPList[]): void {
-    items = this._sortItems(items, 'Apps').slice(0, 8);
+    items = this._sortItems(items, 'Apps')
     let html: string = '<div class="zd_Main_Slides"><div class="zd_slide_upper">';
     items.forEach((item: ISPList) => {
       html += `
@@ -464,65 +501,112 @@ export default class ZentalisDpResourceLibraryWebPart extends BaseClientSideWebP
   }
 
   private _renderListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getListData()
         .then((response) => {
-          this._renderList(response.value);
+          this._renderList(response.value.slice(0, 12)); // Initial render limited to 12 items
         });
     }
   }
-
+  
+  private _renderFullListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getListData()
+        .then((response) => {
+          this._renderList(response.value); // Render all items
+        });
+    }
+  }
+  
   private _renderVideoListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getVideoListData()
         .then((response) => {
-          this._renderVideoList(response.value);
+          this._renderVideoList(response.value.slice(0, 8)); // Initial render limited to 8 items
         });
     }
   }
-
+  
+  private _renderFullVideoListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getVideoListData()
+        .then((response) => {
+          this._renderVideoList(response.value); // Render all items
+        });
+    }
+  }
+  
   private _renderImageListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getImageListData()
         .then((response) => {
-          this._renderImageList(response.value);
+          this._renderImageList(response.value.slice(0, 8)); // Initial render limited to 8 items
         });
     }
   }
-
+  
+  private _renderFullImageListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getImageListData()
+        .then((response) => {
+          this._renderImageList(response.value); // Render all items
+        });
+    }
+  }
+  
   private _renderTeamCallsListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getTeamCallsData()
         .then((response) => {
-          this._renderTeamCallsList(response.value);
+          this._renderTeamCallsList(response.value.slice(0, 12)); // Initial render limited to 12 items
         });
     }
   }
-
+  
+  private _renderFullTeamCallsListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getTeamCallsData()
+        .then((response) => {
+          this._renderTeamCallsList(response.value); // Render all items
+        });
+    }
+  }
+  
   private _renderPoliciesListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getPoliciesData()
         .then((response) => {
-          this._renderPoliciesList(response.value);
+          this._renderPoliciesList(response.value.slice(0, 12)); // Initial render limited to 12 items
         });
     }
   }
-
+  
+  private _renderFullPoliciesListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getPoliciesData()
+        .then((response) => {
+          this._renderPoliciesList(response.value); // Render all items
+        });
+    }
+  }
+  
   private _renderAppsListAsync(): void {
-    if (Environment.type === EnvironmentType.SharePoint ||
-      Environment.type === EnvironmentType.ClassicSharePoint) {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
       this._getAppsData()
         .then((response) => {
-          this._renderAppsList(response.value);
+          this._renderAppsList(response.value.slice(0, 8)); // Initial render limited to 8 items
         });
     }
   }
-
+  
+  private _renderFullAppsListAsync(): void {
+    if (Environment.type === EnvironmentType.SharePoint || Environment.type === EnvironmentType.ClassicSharePoint) {
+      this._getAppsData()
+        .then((response) => {
+          this._renderAppsList(response.value); // Render all items
+        });
+    }
+  }
   private _openUrl(url: string): void {
     window.open(url, '_blank');
   }
