@@ -10,8 +10,6 @@ import { escape } from '@microsoft/sp-lodash-subset';
 import { SPComponentLoader } from '@microsoft/sp-loader'; 
 import * as moment from 'moment-timezone';
 
-
-
 import * as strings from 'ZentalisDepBannerWebPartStrings';
 
 export interface IZentalisDepBannerWebPartProps {

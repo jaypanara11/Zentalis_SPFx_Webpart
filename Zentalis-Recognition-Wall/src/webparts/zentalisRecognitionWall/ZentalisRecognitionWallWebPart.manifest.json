@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "717a120d-bc16-4ec6-af90-de4126fc897f",
+  "alias": "ZentalisRecognitionWallWebPart",
+  "componentType": "WebPart",
+
+
+  "version": "*",
+  "manifestVersion": 2,
+
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+  "supportsThemeVariants": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+    "group": { "default": "Advanced" },
+    "title": { "default": "zentalis-recognition-wall" },
+    "description": { "default": "zentalis-recognition-wall description" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "zentalis-recognition-wall"
+    }
+  }]
+}

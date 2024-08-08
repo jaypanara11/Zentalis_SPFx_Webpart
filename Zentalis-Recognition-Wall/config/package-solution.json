@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "zentalis-recognition-wall-client-side-solution",
+    "id": "4e48dfab-7cb4-4674-b39b-7c3a60a7cdba",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.19.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "zentalis-recognition-wall description"
+      },
+      "longDescription": {
+        "default": "zentalis-recognition-wall description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "zentalis-recognition-wall Feature",
+        "description": "The feature that activates elements of the zentalis-recognition-wall solution.",
+        "id": "3e30015b-efab-465d-983f-d4916b295d46",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/zentalis-recognition-wall.sppkg"
+  }
+}

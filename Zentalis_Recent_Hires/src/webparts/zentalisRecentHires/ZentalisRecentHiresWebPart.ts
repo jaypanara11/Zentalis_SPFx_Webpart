@@ -3,13 +3,8 @@ import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-//import styles from './ZentalisRecentHiresWebPart.module.scss';
 import * as strings from 'ZentalisRecentHiresWebPartStrings';
 import { MSGraphClientV3 } from '@microsoft/sp-http';
-
-// import { SPComponentLoader } from '@microsoft/sp-loader'; 
-// const cssUrl = `https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis.css`;
-// SPComponentLoader.loadCss(cssUrl);
 
 export interface IZentalisRecentHiresWebPartProps {
   description: string;
@@ -19,6 +14,7 @@ export interface IZentalisRecentHiresWebPartProps {
   Icon: string;
   Rightarrow: string;
   Leftarrow: string;
+  aboutEmployeeLink: string;
 }
 
 export interface ISPList {
@@ -28,10 +24,14 @@ export interface ISPList {
   city: string;
   state: string;
 }
+
 export default class ZentalisRecentHiresWebPart extends BaseClientSideWebPart<IZentalisRecentHiresWebPartProps> {
 
   private currentEmployeeIndex: number = 0;
   private employees: ISPList[] = [];
+  private touchStartX: number = 0;
+  private touchEndX: number = 0;
+  private swipeThreshold: number = 50; // Minimum swipe distance to trigger a change
 
   public render(): void {
     this.context.msGraphClientFactory.getClient('3')
@@ -74,7 +74,7 @@ export default class ZentalisRecentHiresWebPart extends BaseClientSideWebPart<IZ
             <h2>${this.properties.WelcomeText},<br> ${item.displayName}!</h2>
             <p>${item.jobTitle} from ${item.city},<br> ${item.state}!</p>
             <div class="recent_Hiring_Cardslink">
-              <a href="#">${this.properties.aboutEmployee} ${firstName}</a>
+              <a href="${this.properties.aboutEmployeeLink}">${this.properties.aboutEmployee} ${firstName}</a>
               <img src="${this.properties.Icon}" alt="">
             </div>
           </div>
@@ -84,22 +84,49 @@ export default class ZentalisRecentHiresWebPart extends BaseClientSideWebPart<IZ
     // Attach event listeners for prev and next buttons
     this.domElement.querySelector('#prevEmployee')?.addEventListener('click', this.showPreviousEmployee.bind(this));
     this.domElement.querySelector('#nextEmployee')?.addEventListener('click', this.showNextEmployee.bind(this));
+
+    // Attach touch event listeners for swipe functionality
+    const container = this.domElement.querySelector('.recentHireContainer');
+    if (container) {
+      container.addEventListener('touchstart', this.handleTouchStart.bind(this));
+      container.addEventListener('touchmove', this.handleTouchMove.bind(this));
+      container.addEventListener('touchend', this.handleTouchEnd.bind(this));
+    }
+  }
+
+  private handleTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.touches[0].clientX;
+  }
+
+  private handleTouchMove(event: TouchEvent): void {
+    this.touchEndX = event.touches[0].clientX;
+  }
+
+  private handleTouchEnd(event: TouchEvent): void {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (Math.abs(swipeDistance) > this.swipeThreshold) {
+      if (swipeDistance > 0) {
+        this.showPreviousEmployee(event);
+      } else {
+        this.showNextEmployee(event);
+      }
+    }
   }
 
   private showPreviousEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex > 0) {
-      this.currentEmployeeIndex--;
-      this.renderEmployeeCard();
-    }
+    this.currentEmployeeIndex = (this.currentEmployeeIndex === 0) 
+      ? this.employees.length - 1 
+      : this.currentEmployeeIndex - 1;
+    this.renderEmployeeCard();
   }
 
   private showNextEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex < this.employees.length - 1) {
-      this.currentEmployeeIndex++;
-      this.renderEmployeeCard();
-    }
+    this.currentEmployeeIndex = (this.currentEmployeeIndex === this.employees.length - 1) 
+      ? 0 
+      : this.currentEmployeeIndex + 1;
+    this.renderEmployeeCard();
   }
 
   protected onInit(): Promise<void> {
@@ -170,7 +197,10 @@ export default class ZentalisRecentHiresWebPart extends BaseClientSideWebPart<IZ
                   label: 'Welcome Text'
                 }),
                 PropertyPaneTextField('aboutEmployee', {
-                  label: 'About Employee'
+                  label: 'About Employee Text'
+                }),
+                PropertyPaneTextField('aboutEmployeeLink', {
+                  label: 'About Employee Link'
                 }),
                 PropertyPaneTextField('Icon', {
                   label: 'Navigation Icon'

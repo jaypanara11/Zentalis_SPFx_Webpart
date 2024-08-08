@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "16.17.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.12.0"
+    },
+    "version": "1.19.0",
+    "libraryName": "zentalis-recognition-wall",
+    "libraryId": "4e48dfab-7cb4-4674-b39b-7c3a60a7cdba",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "zentalis-recognition-wall",
+    "solutionShortDescription": "zentalis-recognition-wall description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

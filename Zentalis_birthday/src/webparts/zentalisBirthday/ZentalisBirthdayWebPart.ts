@@ -13,6 +13,7 @@ export interface IZentalisBirthdayWebPartProps {
   Icon: string;
   Rightarrow: string;
   Leftarrow: string;
+  AboutEmployeeLink: string;
 }
 
 export interface ISPList {
@@ -24,6 +25,9 @@ export default class ZentalisBirthdayWebPart extends BaseClientSideWebPart<IZent
 
   private currentEmployeeIndex: number = 0;
   private employees: ISPList[] = [];
+  private touchStartX: number = 0;
+  private touchEndX: number = 0;
+  private swipeThreshold: number = 50; // Minimum swipe distance to trigger a change
 
   public render(): void {
     this.fetchData()
@@ -87,15 +91,15 @@ export default class ZentalisBirthdayWebPart extends BaseClientSideWebPart<IZent
           <div class="birthdays_Title">
             <h3>${quarterTitle}</h3>
             <div class="birthday_Celebrations_btn">
-              <a href="#" id="prevEmployee"><img class="birthday_Celebrations_btn_Icon" src="${this.properties.Leftarrow}" alt="image"/></a>
-              <a href="#" id="nextEmployee"><img class="birthday_Celebrations_btn_Icon" src="${this.properties.Rightarrow}" alt="image"/></a>
+              <a href="#" id="prevEmployee"><img class="birthday_Celebrations_btn_Icon" src="${this.properties.Leftarrow}" alt="Previous"/></a>
+              <a href="#" id="nextEmployee"><img class="birthday_Celebrations_btn_Icon" src="${this.properties.Rightarrow}" alt="Next"/></a>
             </div>
           </div>
           <div class="birthday_Lower_Celebrations">
             <p class="birthday_Year">${formattedDate}</p>
             <h2>${employeeName}</h2>
             <div class="birthday_Cards_Link">
-              <a href="#">${this.properties.AboutEmployee} ${firstName}</a>
+              <a href="${this.properties.AboutEmployeeLink}">${this.properties.AboutEmployee} ${firstName}</a>
               <img src="${this.properties.Icon}" />
             </div>
           </div>
@@ -103,22 +107,59 @@ export default class ZentalisBirthdayWebPart extends BaseClientSideWebPart<IZent
     `;
 
     // Attach event listeners for prev and next buttons
-    this.domElement.querySelector('#prevEmployee')?.addEventListener('click', this.showPreviousEmployee.bind(this));
-    this.domElement.querySelector('#nextEmployee')?.addEventListener('click', this.showNextEmployee.bind(this));
+    const prevButton = this.domElement.querySelector('#prevEmployee');
+    const nextButton = this.domElement.querySelector('#nextEmployee');
+    if (prevButton) {
+      prevButton.addEventListener('click', this.showPreviousEmployee.bind(this));
+    }
+    if (nextButton) {
+      nextButton.addEventListener('click', this.showNextEmployee.bind(this));
+    }
+
+    // Add touch event listeners for swipe functionality
+    const cardContainer = this.domElement.querySelector('.birthday_Container');
+    if (cardContainer) {
+      cardContainer.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
+      cardContainer.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
+      cardContainer.addEventListener('touchend', this.handleTouchEnd.bind(this), false);
+    }
+  }
+
+  private handleTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].clientX;
+  }
+
+  private handleTouchMove(event: TouchEvent): void {
+    this.touchEndX = event.changedTouches[0].clientX;
+  }
+
+  private handleTouchEnd(event: TouchEvent): void {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (Math.abs(swipeDistance) > this.swipeThreshold) {
+      if (swipeDistance > 0) {
+        this.showPreviousEmployee(event);
+      } else {
+        this.showNextEmployee(event);
+      }
+    }
   }
 
   private showPreviousEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex > 0) {
-      this.currentEmployeeIndex--;
+    if (this.employees.length > 0) {
+      this.currentEmployeeIndex = (this.currentEmployeeIndex === 0) 
+        ? this.employees.length - 1 
+        : this.currentEmployeeIndex - 1;
       this.renderEmployeeCard();
     }
   }
 
   private showNextEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex < this.employees.length - 1) {
-      this.currentEmployeeIndex++;
+    if (this.employees.length > 0) {
+      this.currentEmployeeIndex = (this.currentEmployeeIndex === this.employees.length - 1) 
+        ? 0 
+        : this.currentEmployeeIndex + 1;
       this.renderEmployeeCard();
     }
   }
@@ -206,7 +247,10 @@ export default class ZentalisBirthdayWebPart extends BaseClientSideWebPart<IZent
                   label: 'Title'
                 }),
                 PropertyPaneTextField('AboutEmployee', {
-                  label: 'About Employee'
+                  label: 'About Employee Text'
+                }),
+                PropertyPaneTextField('AboutEmployeeLink', {
+                  label: 'About Employee Link'
                 }),
                 PropertyPaneTextField('Icon', {
                   label: 'Navigation Icon'

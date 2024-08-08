@@ -1,7 +1,6 @@
 import { Version } from '@microsoft/sp-core-library';
 import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'ZentalisWorkAnniversariesWebPartStrings';
 import { MSGraphClientV3 } from '@microsoft/sp-http';
 
@@ -12,6 +11,7 @@ export interface IZentalisWorkAnniversariesWebPartProps {
   Icon: string;
   Rightarrow: string;
   Leftarrow: string;
+  AboutEmployeeLink: string;
 }
 
 export interface ISPList {
@@ -24,6 +24,9 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
   private currentEmployeeIndex: number = 0;
   private employees: ISPList[] = [];
   private filteredEmployees: ISPList[] = [];
+  private touchStartX: number = 0;
+  private touchEndX: number = 0;
+  private swipeThreshold: number = 50; // Minimum swipe distance to trigger a change
 
   public render(): void {
     this.context.msGraphClientFactory.getClient('3')
@@ -134,7 +137,7 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
           <h2>${item.displayName}</h2>
           <p class="anniversaries_Text">Congrats ${firstName} for ${yearsCompleted} ${yearsCompleted === 1 ? 'year' : 'years'} at Zentalis!</p>
           <div class="anniversaries_CardsLink">
-            <a href="#">${this.properties.AboutEmployee} ${firstName}</a>
+            <a href="${this.properties.AboutEmployeeLink}">${this.properties.AboutEmployee} ${firstName}</a>
             <img src="${this.properties.Icon}" alt="">
           </div>
         </div>
@@ -143,22 +146,49 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
 
     this.domElement.querySelector('#prevEmployee')?.addEventListener('click', this.showPreviousEmployee.bind(this));
     this.domElement.querySelector('#nextEmployee')?.addEventListener('click', this.showNextEmployee.bind(this));
+
+    // Add touch event listeners for swipe functionality
+    const cardContainer = this.domElement.querySelector('.anniversaries_Container');
+    if (cardContainer) {
+      cardContainer.addEventListener('touchstart', this.handleTouchStart.bind(this), false);
+      cardContainer.addEventListener('touchmove', this.handleTouchMove.bind(this), false);
+      cardContainer.addEventListener('touchend', this.handleTouchEnd.bind(this), false);
+    }
+  }
+
+  private handleTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.changedTouches[0].clientX;
+  }
+
+  private handleTouchMove(event: TouchEvent): void {
+    this.touchEndX = event.changedTouches[0].clientX;
+  }
+
+  private handleTouchEnd(event: TouchEvent): void {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (Math.abs(swipeDistance) > this.swipeThreshold) {
+      if (swipeDistance > 0) {
+        this.showPreviousEmployee(event);
+      } else {
+        this.showNextEmployee(event);
+      }
+    }
   }
 
   private showPreviousEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex > 0) {
-      this.currentEmployeeIndex--;
-      this.renderEmployeeCard();
-    }
+    this.currentEmployeeIndex = (this.currentEmployeeIndex === 0) 
+      ? this.filteredEmployees.length - 1 
+      : this.currentEmployeeIndex - 1;
+    this.renderEmployeeCard();
   }
 
   private showNextEmployee(event: Event): void {
     event.preventDefault();
-    if (this.currentEmployeeIndex < this.filteredEmployees.length - 1) {
-      this.currentEmployeeIndex++;
-      this.renderEmployeeCard();
-    }
+    this.currentEmployeeIndex = (this.currentEmployeeIndex === this.filteredEmployees.length - 1) 
+      ? 0 
+      : this.currentEmployeeIndex + 1;
+    this.renderEmployeeCard();
   }
 
   private getCurrentQuarter(): string {
@@ -189,31 +219,16 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
               environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentOutlook : strings.AppOutlookEnvironment;
               break;
             case 'Teams':
-            case 'TeamsModern':
               environmentMessage = this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentTeams : strings.AppTeamsTabEnvironment;
               break;
             default:
-              environmentMessage = strings.UnknownEnvironment;
+              throw new Error('Unknown host');
           }
           return environmentMessage;
         });
     }
 
     return Promise.resolve(this.context.isServedFromLocalhost ? strings.AppLocalEnvironmentSharePoint : strings.AppSharePointEnvironment);
-  }
-
-  protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
-    if (!currentTheme) {
-      return;
-    }
-
-    const { semanticColors } = currentTheme;
-
-    if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
-    }
   }
 
   protected get dataVersion(): Version {
@@ -225,7 +240,7 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
       pages: [
         {
           header: {
-            description: ''
+            description: strings.PropertyPaneDescription
           },
           groups: [
             {
@@ -235,10 +250,13 @@ export default class ZentalisWorkAnniversariesWebPart extends BaseClientSideWebP
                   label: 'Title'
                 }),
                 PropertyPaneTextField('AboutEmployee', {
-                  label: 'About Employee'
+                  label: 'About Employee Text'
+                }),
+                PropertyPaneTextField('AboutEmployeeLink', {
+                  label: 'About Employee Link'
                 }),
                 PropertyPaneTextField('Icon', {
-                  label: 'Icon'
+                  label: 'Navigation Icon'
                 }),
                 PropertyPaneTextField('Leftarrow', {
                   label: 'Left Arrow'

@@ -10,7 +10,7 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'ZentalisTeamsWebPartStrings';
 import { MSGraphClientV3 } from '@microsoft/sp-http';
 import { ResponseType } from '@microsoft/microsoft-graph-client';
-import { SPComponentLoader } from '@microsoft/sp-loader'; 
+import { SPComponentLoader } from '@microsoft/sp-loader';
 
 export interface IZentalisTeamsWebPartProps {
   description: string;
@@ -82,20 +82,33 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
   private async _fetchUsers(client: MSGraphClientV3): Promise<ISPList[]> {
     try {
       const response = await client.api('https://graph.microsoft.com/v1.0/users')
-        .select('id,displayName,jobTitle,department,employeeHireDate')
+        .select('id,displayName,jobTitle,department,employeeHireDate,accountEnabled')
         .get();
-      const users = response.value.map((user: any) => ({
-        ...user,
-        employeeHireDate: user.employeeHireDate
-      }));
+  
+      const users = response.value
+        .filter((user: any) => user.accountEnabled && !this._isJobTitleFiltered(user.jobTitle))
+        .map((user: any) => ({
+          ...user,
+          employeeHireDate: user.employeeHireDate
+        }));
+  
       return this._fetchUserPhotos(client, users);
     } catch (error) {
       console.error('Failed to fetch users:', error);
       return [];
     }
   }
+  
+  private _isJobTitleFiltered(jobTitle: any): boolean {
+    const titlesToFilter = ['Consultant', 'Intern'];
+    const jobTitleStr = typeof jobTitle === 'string' ? jobTitle : '';
+    return titlesToFilter.some(title => jobTitleStr.toLowerCase().includes(title.toLowerCase()));
+  }
+  
+  
 
   private async _fetchUserPhotos(client: MSGraphClientV3, users: ISPList[]): Promise<ISPList[]> {
+    const defaultPhotoUrl = this.properties.Profile || 'https://realitycraftprivatelimited.sharepoint.com/sites/DevJay/SiteAssets/Zentalis_Image/Profile_Image.png';
     const usersWithPhotos = await Promise.all(users.map(async (user: ISPList) => {
       try {
         if (user.id) {
@@ -103,15 +116,15 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
           const photoUrl = URL.createObjectURL(photoResponse);
           return { ...user, photo: photoUrl };
         } else {
-          return null;
+          return { ...user, photo: defaultPhotoUrl };
         }
       } catch (error) {
         console.error(`Failed to get photo for user ${user.displayName}:`, error);
-        return null;
+        return { ...user, photo: defaultPhotoUrl };
       }
     }));
 
-    return usersWithPhotos.filter(user => user !== null) as ISPList[];
+    return usersWithPhotos;
   }
 
   private _renderUsersByDepartment(users: ISPList[]): void {
@@ -279,8 +292,8 @@ export default class ZentalisTeamsWebPart extends BaseClientSideWebPart<IZentali
                 PropertyPaneTextField('Icon', {
                   label: 'Navigation Icon'
                 }),
-                PropertyPaneTextField('CSSUrl', {
-                  label: 'CSS Url'
+                PropertyPaneTextField('Profile', {
+                  label: 'User Profile Image'
                 })
               ]
             }

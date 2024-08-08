@@ -180,22 +180,22 @@ export default class ZentalisUpperFooterWebPart extends BaseClientSideWebPart<IZ
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneTextField('ZentalisContact', {
-                  label: 'Zentalis Contact'
+                  label: 'Top Title'
                 }),
                 PropertyPaneTextField('ZentalisFottertitle', {
-                  label: 'Fotter Title'
+                  label: 'Footer Title'
                 }),
                 PropertyPaneTextField('ZentalisFotterDescription', {
-                  label: 'Fotter Description'
+                  label: 'Footer Description'
                 }),
                 PropertyPaneTextField('ZentalisSchedulingMeeting', {
-                  label: 'Zentalis Scheduling Meeting'
+                  label: 'Bottom Link Display Text'
                 }),
                 PropertyPaneTextField('ZentalisSchedulingMeetingLink', {
-                  label: 'Scheduling Meeting Link'
+                  label: 'Bottom Link URL'
                 }),
                 PropertyPaneTextField('RightArrow', {
-                  label: 'Right Arrow'
+                  label: 'Bottom Link Image'
                 }),
                 PropertyPaneTextField('FooterLogo', {
                   label: 'Footer Logo'
