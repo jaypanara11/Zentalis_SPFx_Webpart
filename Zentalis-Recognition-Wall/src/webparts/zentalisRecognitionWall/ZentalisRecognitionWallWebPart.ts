@@ -259,7 +259,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user1,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId1'
                 }),
                 PropertyFieldDateTimePicker('Date1', {
                   label: 'Select the date',
@@ -267,7 +267,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId1'
                 }),
                 PropertyPaneTextField('recognizedText1', {
                   label: 'Recognization Title'
@@ -303,7 +303,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user2,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId2'
                 }),
                 PropertyFieldPeoplePicker('user3', {
                   label: 'Recognized By',
@@ -313,7 +313,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user3,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId3'
                 }),
                 PropertyFieldDateTimePicker('Date2', {
                   label: 'Select the date',
@@ -321,7 +321,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId2'
                 }),
                 PropertyPaneTextField('recognizedText2', {
                   label: 'recognized for being'
@@ -357,7 +357,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user4,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId4'
                 }),
                 PropertyFieldPeoplePicker('user5', {
                   label: 'Recognized By',
@@ -367,7 +367,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user5,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId5'
                 }),
                 PropertyFieldDateTimePicker('Date3', {
                   label: 'Select the date',
@@ -375,7 +375,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId3'
                 }),
                 PropertyPaneTextField('recognizedText3', {
                   label: 'recognized for being'
@@ -411,7 +411,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user6,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId6'
                 }),
                 PropertyFieldPeoplePicker('user7', {
                   label: 'Recognized By',
@@ -421,7 +421,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user7,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId7'
                 }),
                 PropertyFieldDateTimePicker('Date4', {
                   label: 'Select the date',
@@ -429,7 +429,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId4'
                 }),
                 PropertyPaneTextField('recognizedText4', {
                   label: 'recognized for being'
@@ -465,7 +465,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user8,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId8'
                 }),
                 PropertyFieldPeoplePicker('user9', {
                   label: 'Recognized By',
@@ -475,7 +475,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user9,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId9'
                 }),
                 PropertyFieldDateTimePicker('Date5', {
                   label: 'Select the date',
@@ -483,7 +483,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId5'
                 }),
                 PropertyPaneTextField('recognizedText5', {
                   label: 'recognized for being'
@@ -519,7 +519,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user10,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId10'
                 }),
                 PropertyFieldPeoplePicker('user11', {
                   label: 'Recognized By',
@@ -529,7 +529,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   context: this.context as any,
                   properties: this.properties.user11,
-                  key: 'peopleFieldId'
+                  key: 'peopleFieldId11'
                 }),
                 PropertyFieldDateTimePicker('Date6', {
                   label: 'Select the date',
@@ -537,7 +537,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   dateConvention: DateConvention.Date, // Use Date convention
                   onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
                   properties: this.properties,
-                  key: 'dateTimeFieldId'
+                  key: 'dateTimeFieldId6'
                 }),
                 PropertyPaneTextField('recognizedText6', {
                   label: 'recognized for being'

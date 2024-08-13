@@ -88,7 +88,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date1)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers1 && selectedUsers1.map(user1 => ( 
                     <div key={user1.id}>         
                       {user1.fullName}
@@ -136,7 +136,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date2)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers3 && selectedUsers3.map(user3 => ( 
                     <div key={user3.id}>         
                       {user3.fullName}
@@ -184,7 +184,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date3)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers5 && selectedUsers5.map(user5 => ( 
                     <div key={user5.id}>         
                       {user5.fullName}
@@ -235,7 +235,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date1)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers1 && selectedUsers1.map(user1 => ( 
                       <div key={user1.id}>         
                         {user1.fullName}
@@ -283,7 +283,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date2)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers3 && selectedUsers3.map(user3 => ( 
                       <div key={user3.id}>         
                         {user3.fullName}
@@ -331,7 +331,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date3)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers5 && selectedUsers5.map(user5 => ( 
                       <div key={user5.id}>         
                         {user5.fullName}
@@ -384,7 +384,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date4)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers7 && selectedUsers7.map(user7 => ( 
                     <div key={user7.id}>         
                       {user7.fullName}
@@ -432,7 +432,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date5)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers9 && selectedUsers9.map(user9 => ( 
                     <div key={user9.id}>         
                       {user9.fullName}
@@ -480,7 +480,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date6)}</p>
-                <p className="view_day_author">• 
+                <p className="view_day_author">• by 
                   {selectedUsers11 && selectedUsers11.map(user11 => ( 
                     <div key={user11.id}>         
                       {user11.fullName}
@@ -531,7 +531,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date4)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers7 && selectedUsers7.map(user7 => ( 
                       <div key={user7.id}>         
                         {user7.fullName}
@@ -579,7 +579,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date5)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers9 && selectedUsers9.map(user9 => ( 
                       <div key={user9.id}>         
                         {user9.fullName}
@@ -627,7 +627,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date6)}</p>
-                  <p className="view_day_author">• 
+                  <p className="view_day_author">• by 
                     {selectedUsers11 && selectedUsers11.map(user11 => ( 
                       <div key={user11.id}>         
                         {user11.fullName}
