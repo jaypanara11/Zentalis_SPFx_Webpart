@@ -59,17 +59,17 @@ export interface IZentalisRecognitionWallWebPartProps {
   Date5: IDateTimeFieldValue;
   Date6: IDateTimeFieldValue;
   user: IPropertyFieldGroupOrPerson[];
-  user1: IPropertyFieldGroupOrPerson[];
+  //user1: IPropertyFieldGroupOrPerson[];
   user2: IPropertyFieldGroupOrPerson[];
-  user3: IPropertyFieldGroupOrPerson[];
+  //user3: IPropertyFieldGroupOrPerson[];
   user4: IPropertyFieldGroupOrPerson[];
-  user5: IPropertyFieldGroupOrPerson[];
+  //user5: IPropertyFieldGroupOrPerson[];
   user6: IPropertyFieldGroupOrPerson[];
-  user7: IPropertyFieldGroupOrPerson[];
+  //user7: IPropertyFieldGroupOrPerson[];
   user8: IPropertyFieldGroupOrPerson[];
-  user9: IPropertyFieldGroupOrPerson[];
+  //user9: IPropertyFieldGroupOrPerson[];
   user10: IPropertyFieldGroupOrPerson[];
-  user11: IPropertyFieldGroupOrPerson[];
+  //user11: IPropertyFieldGroupOrPerson[];
   showCard1: boolean;
   showCard2: boolean;
   showCard3: boolean;
@@ -123,17 +123,17 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
         Date6: this.properties.Date6,
         Description6: this.properties.Description6,
         selectedUsers: this.properties.user,
-        selectedUsers1: this.properties.user1,
+        //selectedUsers1: this.properties.user1,
         selectedUsers2: this.properties.user2,
-        selectedUsers3: this.properties.user3,
+        //selectedUsers3: this.properties.user3,
         selectedUsers4: this.properties.user4,
-        selectedUsers5: this.properties.user5,
+        //selectedUsers5: this.properties.user5,
         selectedUsers6: this.properties.user6,
-        selectedUsers7: this.properties.user7,
+        //selectedUsers7: this.properties.user7,
         selectedUsers8: this.properties.user8,
-        selectedUsers9: this.properties.user9,
+        //selectedUsers9: this.properties.user9,
         selectedUsers10: this.properties.user10,
-        selectedUsers11: this.properties.user11,
+        //selectedUsers11: this.properties.user11,
         showCard1: this.properties.showCard1,
         showCard2: this.properties.showCard2,
         showCard3: this.properties.showCard3,
@@ -251,7 +251,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user,
                   key: 'peopleFieldId'
                 }),
-                PropertyFieldPeoplePicker('user1', {
+                /*PropertyFieldPeoplePicker('user1', {
                   label: 'Recognized By',
                   initialData: this.properties.user1,
                   allowDuplicate: false,
@@ -260,7 +260,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user1,
                   key: 'peopleFieldId1'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date1', {
                   label: 'Select the date',
                   initialDate: this.properties.Date1,
@@ -305,7 +305,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user2,
                   key: 'peopleFieldId2'
                 }),
-                PropertyFieldPeoplePicker('user3', {
+                /*PropertyFieldPeoplePicker('user3', {
                   label: 'Recognized By',
                   initialData: this.properties.user3,
                   allowDuplicate: false,
@@ -314,7 +314,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user3,
                   key: 'peopleFieldId3'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date2', {
                   label: 'Select the date',
                   initialDate: this.properties.Date2,
@@ -359,7 +359,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user4,
                   key: 'peopleFieldId4'
                 }),
-                PropertyFieldPeoplePicker('user5', {
+                /*PropertyFieldPeoplePicker('user5', {
                   label: 'Recognized By',
                   initialData: this.properties.user5,
                   allowDuplicate: false,
@@ -368,7 +368,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user5,
                   key: 'peopleFieldId5'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date3', {
                   label: 'Select the date',
                   initialDate: this.properties.Date3,
@@ -413,7 +413,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user6,
                   key: 'peopleFieldId6'
                 }),
-                PropertyFieldPeoplePicker('user7', {
+                /*PropertyFieldPeoplePicker('user7', {
                   label: 'Recognized By',
                   initialData: this.properties.user7,
                   allowDuplicate: false,
@@ -422,7 +422,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user7,
                   key: 'peopleFieldId7'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date4', {
                   label: 'Select the date',
                   initialDate: this.properties.Date4,
@@ -467,7 +467,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user8,
                   key: 'peopleFieldId8'
                 }),
-                PropertyFieldPeoplePicker('user9', {
+                /*PropertyFieldPeoplePicker('user9', {
                   label: 'Recognized By',
                   initialData: this.properties.user9,
                   allowDuplicate: false,
@@ -476,7 +476,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user9,
                   key: 'peopleFieldId9'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date5', {
                   label: 'Select the date',
                   initialDate: this.properties.Date5,
@@ -521,7 +521,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   properties: this.properties.user10,
                   key: 'peopleFieldId10'
                 }),
-                PropertyFieldPeoplePicker('user11', {
+                /*PropertyFieldPeoplePicker('user11', {
                   label: 'Recognized By',
                   initialData: this.properties.user11,
                   allowDuplicate: false,
@@ -530,7 +530,7 @@ export default class ZentalisRecognitionWallWebPart extends BaseClientSideWebPar
                   context: this.context as any,
                   properties: this.properties.user11,
                   key: 'peopleFieldId11'
-                }),
+                }),*/
                 PropertyFieldDateTimePicker('Date6', {
                   label: 'Select the date',
                   initialDate: this.properties.Date6,

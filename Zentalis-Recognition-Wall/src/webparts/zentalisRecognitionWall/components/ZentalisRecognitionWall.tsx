@@ -31,17 +31,17 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
   
   public render(): React.ReactElement<IZentalisRecognitionWallProps> {
     const { selectedUsers } = this.props;
-    const { selectedUsers1 } = this.props;
+    //const { selectedUsers1 } = this.props;
     const { selectedUsers2 } = this.props;
-    const { selectedUsers3 } = this.props;
+    //const { selectedUsers3 } = this.props;
     const { selectedUsers4 } = this.props;
-    const { selectedUsers5 } = this.props;
+    //const { selectedUsers5 } = this.props;
     const { selectedUsers6 } = this.props;
-    const { selectedUsers7 } = this.props;
+    //const { selectedUsers7 } = this.props;
     const { selectedUsers8 } = this.props;
-    const { selectedUsers9 } = this.props;
+    //const { selectedUsers9 } = this.props;
     const { selectedUsers10 } = this.props;
-    const { selectedUsers11 } = this.props;
+    //const { selectedUsers11 } = this.props;
     
     return (
 <div>
@@ -67,12 +67,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user.id}>         
                     <img src={user.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers1 && selectedUsers1.map(user1 => ( 
-                  <div key={user1.id}> 
-                    <img src={user1.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                       
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -88,13 +83,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date1)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers1 && selectedUsers1.map(user1 => ( 
-                    <div key={user1.id}>         
-                      {user1.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -115,12 +103,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user2.id}>         
                     <img src={user2.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers3 && selectedUsers3.map(user3 => ( 
-                  <div key={user3.id}> 
-                    <img src={user3.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                     
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -136,13 +119,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date2)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers3 && selectedUsers3.map(user3 => ( 
-                    <div key={user3.id}>         
-                      {user3.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -163,12 +139,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user4.id}>         
                     <img src={user4.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers5 && selectedUsers5.map(user5 => ( 
-                  <div key={user5.id}> 
-                    <img src={user5.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                       
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -184,13 +155,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date3)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers5 && selectedUsers5.map(user5 => ( 
-                    <div key={user5.id}>         
-                      {user5.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -214,12 +178,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user.id}>         
                       <img src={user.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers1 && selectedUsers1.map(user1 => ( 
-                    <div key={user1.id}> 
-                      <img src={user1.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                   
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -235,13 +194,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date1)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers1 && selectedUsers1.map(user1 => ( 
-                      <div key={user1.id}>         
-                        {user1.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
@@ -262,12 +214,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user2.id}>         
                       <img src={user2.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers3 && selectedUsers3.map(user3 => ( 
-                    <div key={user3.id}> 
-                      <img src={user3.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                      
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -283,13 +230,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date2)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers3 && selectedUsers3.map(user3 => ( 
-                      <div key={user3.id}>         
-                        {user3.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
@@ -310,12 +250,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user4.id}>         
                       <img src={user4.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers5 && selectedUsers5.map(user5 => ( 
-                    <div key={user5.id}> 
-                      <img src={user5.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                       
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -331,13 +266,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date3)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers5 && selectedUsers5.map(user5 => ( 
-                      <div key={user5.id}>         
-                        {user5.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
@@ -363,12 +291,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user6.id}>         
                     <img src={user6.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers7 && selectedUsers7.map(user7 => ( 
-                  <div key={user7.id}> 
-                    <img src={user7.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                      
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -384,13 +307,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date4)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers7 && selectedUsers7.map(user7 => ( 
-                    <div key={user7.id}>         
-                      {user7.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -411,12 +327,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user8.id}>         
                     <img src={user8.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers9 && selectedUsers9.map(user9 => ( 
-                  <div key={user9.id}> 
-                    <img src={user9.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                       
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -432,13 +343,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date5)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers9 && selectedUsers9.map(user9 => ( 
-                    <div key={user9.id}>         
-                      {user9.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -459,12 +363,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                   <div key={user10.id}>         
                     <img src={user10.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                   </div>
-                ))}            
-                {selectedUsers11 && selectedUsers11.map(user11 => ( 
-                  <div key={user11.id}> 
-                    <img src={user11.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                  </div>
-                ))}            
+                ))}                       
             </div>
             <div className="view-name">
               <div className="view_inside_name">
@@ -480,13 +379,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
               </div>
               <div className="view_day">
                 <p className="view_day_date">{this.formatDate(this.props.Date6)}</p>
-                <p className="view_day_author">• by 
-                  {selectedUsers11 && selectedUsers11.map(user11 => ( 
-                    <div key={user11.id}>         
-                      {user11.fullName}
-                    </div>
-                  ))}
-                </p>
               </div>
             </div>
             <div className="view-icon">
@@ -510,12 +402,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user6.id}>         
                       <img src={user6.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers7 && selectedUsers7.map(user7 => ( 
-                    <div key={user7.id}> 
-                      <img src={user7.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                       
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -531,13 +418,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date4)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers7 && selectedUsers7.map(user7 => ( 
-                      <div key={user7.id}>         
-                        {user7.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
@@ -558,12 +438,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user8.id}>         
                       <img src={user8.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers9 && selectedUsers9.map(user9 => ( 
-                    <div key={user9.id}> 
-                      <img src={user9.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                      
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -579,13 +454,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date5)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers9 && selectedUsers9.map(user9 => ( 
-                      <div key={user9.id}>         
-                        {user9.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
@@ -606,12 +474,7 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                     <div key={user10.id}>         
                       <img src={user10.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-one"/>
                     </div>
-                  ))}            
-                  {selectedUsers11 && selectedUsers11.map(user11 => ( 
-                    <div key={user11.id}> 
-                      <img src={user11.imageUrl} alt="" style={{ width: '32px', height: '32px', borderRadius: '50%'}} className="img-two"/>
-                    </div>
-                  ))}            
+                  ))}                     
               </div>
               <div className="view-name">
                 <div className="view_inside_name">
@@ -627,13 +490,6 @@ export default class ZentalisRecognitionWall extends React.Component<IZentalisRe
                 </div>
                 <div className="view_day">
                   <p className="view_day_date">{this.formatDate(this.props.Date6)}</p>
-                  <p className="view_day_author">• by 
-                    {selectedUsers11 && selectedUsers11.map(user11 => ( 
-                      <div key={user11.id}>         
-                        {user11.fullName}
-                      </div>
-                    ))}
-                  </p>
                 </div>
               </div>
               <div className="view-icon">
